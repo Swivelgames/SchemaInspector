@@ -1,3 +1,3 @@
 CWD=$(cd $(dirname $0);cd ..;pwd -P)
-java -jar $CWD/bin/compiler.jar --js=$CWD/inspector.js --js=$CWD/item.js --js=$CWD/utilities.js --js_output_file=$CWD/minified/schemainspector.min.js --create_source_map=$CWD/minified/schemainspector.min.map
+java -jar $CWD/bin/compiler.jar --js=$CWD/inspector.js --js=$CWD/item.js --js=$CWD/ui.js --js=$CWD/utilities.js --js_output_file=$CWD/minified/schemainspector.min.js --create_source_map=$CWD/minified/schemainspector.min.map
 

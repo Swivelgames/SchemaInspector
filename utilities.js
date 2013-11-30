@@ -57,6 +57,23 @@ var SchemaUtilities = (function(){
 				);
 			}
 			return false;
+		},
+		determineValueAttr: function(elem) {
+			// @todo EXPAND COMPATIBLE ELEMENTS/NODES
+			if (!elem) return null;
+
+			switch (elem.nodeName) {
+				case "INPUT":
+					return "value";
+					break;
+				case "IMG":
+				case "SCRIPT":
+					return "src";
+					break;
+				case "DATA":
+				default:
+					return "innerHTML";
+			}
 		}
 	};
 

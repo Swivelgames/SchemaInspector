@@ -42,7 +42,10 @@ var SchemaItem = (function(){
 				if(inScope!==true) continue;
 
 				var curValue = this.props[name],
-					newValue = this.parseProperty(dom);
+					newValue = {
+						value: this.parseProperty(dom),
+						dom: dom
+					};
 
 				if(curValue instanceof Array) {
 					this.props[name].push(newValue);
