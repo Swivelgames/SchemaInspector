@@ -3,7 +3,7 @@ Schema Inspector
 
 Very simple microdata analyzer.
 
-Contains a simple UI, accessible via Web Inspector Console by executing SimpleUI the following:
+Contains a simple UI, accessible via Web Inspector Console by executing the following:
 ```
 SchemaInspector.run;
 new SchemaUI();
