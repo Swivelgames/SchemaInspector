@@ -49,9 +49,6 @@ var SchemaUI = (function(){
 			});
 
 			this.initialized.set('details', false);
-/*			this.loadResource(tplDir+"details.html", function(nodes, xhr, url){
-				that.initDetails(nodes[0]);
-			});*/
 
 			this.initialized.set('list', false);
 			this.loadResource(tplDir+"list.html", function(nodes, xhr, url){
@@ -100,6 +97,8 @@ var SchemaUI = (function(){
 			return;
 		},
 		initList: function(dom) {
+			this.initialized.set('list', false);
+
 			this.setContent(dom, 'main', SchemaInspector, function(e, context){
 				var that = this;
 				this.loadResource(this.getTplDir()+"details.html", function(nodes){
@@ -111,6 +110,7 @@ var SchemaUI = (function(){
 			return;
 		},
 		initDetails: function(dom, context) {
+			this.initialized.set('details', false);
 			this.setContent(dom, 'details', context);
 			this.initialized.set('details', dom);
 			return;
@@ -156,12 +156,12 @@ var SchemaUI = (function(){
 				});
 
 				if(liClick instanceof Function) {
-					nLi.addEventListener('click',function(){
-						var args = Array.prototype.splice.apply(arguments,[0]);
-						liClick.apply(that,args.concat([
-							prop, propName, list, nLi, contDom, dom, liClick
-						]));
-					});
+					nLi.addEventListener('click',(function(addntlArgs){
+						return function(){
+							var args = Array.prototype.splice.apply(arguments,[0]);
+							liClick.apply(that,args.concat(addntlArgs));
+						};
+					})([prop, propName, list, nLi, contDom, dom, liClick]));
 				}
 
 				contDom.appendChild(nLi);
